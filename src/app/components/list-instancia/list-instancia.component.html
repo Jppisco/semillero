@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <div class="header__title">
+
+
+        <span>Admin</span>
+        <h2>Gluky users</h2>
+      </div>
+      <div class="user">
+
+        <h4 class="user__mail">{{correo}}</h4>
+        <div class="user__avatares"><img class="user__avatar" src="../../../assets/profile_picture.png" alt="imagen" />
+          <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="tableWrapper">
+      <h3 class="table__title">{{titulo}}</h3>
+      <div class="tableContainer">
+        <div class="table">
+          <h5 *ngIf="allInstancias.length == 0" style="margin-top: 30px;">No hay datos</h5>
+          <div class="table__options">
+            <div class="filtro" *ngIf="allInstancias.length > 0">
+              <input type="search" placeholder="buscar" name="nombre" [(ngModel)]="nombreABuscar"
+                (keyup.enter)="getInstanciaByNombre()">
+              <button (click)="limpiarInput()">Limpiar Filtro</button>
+            </div>
+            <input type="date" placeholder="fecha inicio" name="incio" [(ngModel)]="fechaInicio">
+            <input type="date" placeholder="fecha fin" name="fin" [(ngModel)]="fechaFin">
+            <button (click)="fechas()">Buscar con fecha</button>
+            <button *ngIf="allInstancias.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
+              <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
+            </button>
+            <button class="table__button" routerLink="/create-I">
+              <i class="fas fa-plus"></i> &nbsp; Añadir Datos
+            </button>
+
+          </div>
+          <div class="table__content">
+            <div class="table__scroll">
+              <table class="table__data" *ngIf="allInstancias.length > 0">
+                <thead class="table__head">
+                  <tr class="table__row">
+                    <th class="table__header">ID</th>
+                    <th class="table__header">Nombre</th>
+                    <th class="table__header">Documento ID</th>
+                    <th class="table__header">País</th>
+                    <th class="table__header">Creación</th>
+                    <th class="table__header">Actualización</th>
+                    <th class="table__header"></th>
+                    <th class="table__header"></th>
+                  </tr>
+                </thead>
+                <tbody class="table__body" *ngFor="let instancia of currentPageItems">
+                  <tr class=" table__row">
+                    <td class="table__cell">{{instancia.id_instancia}}</td>
+                    <td class="table__cell">{{instancia.nombre}}</td>
+                    <td class="table__cell">{{instancia.doc_id}}</td>
+                    <td class="table__cell">{{instancia.pais}}</td>
+                    <td class="table__cell">{{instancia.fechaCreacion}}</td>
+                    <td class="table__cell">{{instancia.fechaActualizacion}}</td>
+                    <td class="table_cell table__cell--options">
+                      <i class="fas fa-edit fa-lg" [routerLink]="['/edit/',instancia.id]"></i>
+                    </td>
+                    <td class="table_cell table__cell--options">
+                      <i class="fas fa-laptop-code fa-lg" [routerLink]="['/list-P/',instancia.id_instancia]"></i>
+                    </td>
+                  <!-- <td><i (click)="eliminarInstancia(instancia.id)" class="fas fa-trash-alt fa-lg"></i></td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table__footer" *ngIf="allInstancias.length > 0">
+            <button class="paginationBtn" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+            <span class="paginationText">{{currentPage}}</span>
+            <button class="paginationBtn" (click)="nextPage()"
+              [disabled]="currentPage === totalPages()">Siguiente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table__content2">
+  <div class="table__scroll">
+    <table class="table__data" id="tabla-exportar" *ngIf="allInstancias.length > 0">
+      <thead class="table__head">
+        <tr class="table__row">
+          <th class="table__header">ID</th>
+          <th class="table__header">Nombre</th>
+          <th class="table__header">Documento ID</th>
+          <th class="table__header">País</th>
+          <th class="table__header">Creación</th>
+          <th class="table__header">Actualización</th>
+          <th class="table__header"></th>
+          <th class="table__header"></th>
+        </tr>
+      </thead>
+      <tbody class="table__body" *ngFor="let instancia of allInstancias">
+        <tr class=" table__row">
+          <td class="table__cell">{{instancia.id_instancia}}</td>
+          <td class="table__cell">{{instancia.nombre}}</td>
+          <td class="table__cell">{{instancia.doc_id}}</td>
+          <td class="table__cell">{{instancia.pais}}</td>
+          <td class="table__cell">{{instancia.fechaCreacion}}</td>
+          <td class="table__cell">{{instancia.fechaActualizacion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

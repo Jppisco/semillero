@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="form__card">
+    <form action="#" class="form" (ngSubmit)="login()" [formGroup]="loginUsuario">
+      <h1 class="form__title">Iniciar sesión</h1>
+      <div class="form__control">
+        <input placeholder="Usuario" class="control__input" type="email" formControlName="email" />
+        <label for="input-field" class="control__label">Usuario</label>
+        <span class="control__span"></span>
+      </div>
+      <span class="form__alert" *ngIf="
+          loginUsuario.get('email')?.hasError('required') &&
+          loginUsuario.get('email')?.touched
+        ">
+        El <strong class="alert__strong">correo</strong> es requerido
+      </span>
+      <span *ngIf="
+          loginUsuario.get('email')?.hasError('email') &&
+          loginUsuario.get('email')?.touched
+        ">
+        El <strong class="alert__strong">correo</strong> es invalido
+      </span>
+      <div class="form__control">
+        <input placeholder="Contraseña" class="control__input" type="password" formControlName="password" />
+        <label for="input-field" class="control__label">Contraseña</label>
+        <span class="control__span"></span>
+      </div>
+      <span class="form__alert" *ngIf="
+          loginUsuario.get('password')?.hasError('required') &&
+          loginUsuario.get('password')?.touched
+        ">
+        La <strong class="alert__strong">contraseña</strong> es requerida
+      </span>
+      <button type="submit" class="form__btn" [disabled]="loginUsuario.invalid">
+        Ingresar
+      </button>
+      <div class="form__forgot">
+        <a href="#" routerLink="/recuperar-password">Olvidó su contraseña?</a>
+      </div>
+      <div class="separator">
+        <hr class="line" />
+        <span>O</span>
+        <hr class="line" />
+      </div>
+    </form>
+    <div class="more">
+      <button class="form__btn form__btn" (click)="loginGoogle()">
+        Login Google
+      </button>
+      <p class="more__info">
+        Aún no tienes cuenta? Regístrate
+        <a href="#" class="more__link" routerLink="/register-user">Aquí</a>
+      </p>
+    </div>
+    <div class="form__info">
+      <h1 class="info__title">Gluky users</h1>
+      <p class="info__paragraph">
+        Sistema para la administración de usuarios de prueba.
+      </p>
+    </div>
+  </div>
+
+</div>

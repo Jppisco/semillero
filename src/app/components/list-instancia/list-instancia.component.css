@@ -1,0 +1,180 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header__title {
+    color: lightseagreen;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user__mail {
+    padding: 0 1rem 0 0;
+    font-weight: bold;
+    color: lightseagreen;
+}
+
+.user__avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 20%;
+}
+
+.tableWrapper {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    height: 87%;
+}
+
+.table__title {
+    font-weight: bold;
+    color: lightseagreen;
+    margin-bottom: 1rem;
+
+}
+
+.tableContainer {
+    width: 100%;
+}
+
+.table {
+    border: 1px solid lightseagreen;
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.table__options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.table__button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+.table__button:hover {
+    background-color: rgb(110, 230, 99);
+    color: #fff
+}
+
+.table__content {
+    overflow-x: auto;
+}
+
+.table__scroll {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.table__data {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table__head {
+    background-color: lightseagreen;
+    color: #fff;
+}
+
+.table__header {
+    padding: 15px;
+    text-align: left;
+}
+
+.table__body {
+    background: #f2f2f2;
+    font-weight: bold;
+}
+
+.table__cell {
+    padding: 1rem;
+    font-size: 14px;
+    color: #333;
+}
+
+.table__cell--options {
+    cursor: pointer;
+    color: black;
+}
+
+.table__cell--options:hover {
+    cursor: pointer;
+    color: lightseagreen;
+}
+
+.table__row:nth-child(even) {
+    background: #fff;
+}
+
+.table__footer {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}
+
+.paginationBtn {
+    background-color: lightseagreen;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.paginationBtn:hover {
+    font-weight: bold;
+    background-color: white;
+    color: lightseagreen;
+}
+
+.paginationText {
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.cerrar {
+    display: none;
+}
+
+.user__avatares:hover>button {
+    display: block;
+}
+
+.table__content2 {
+    display: none;
+}

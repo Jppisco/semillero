@@ -1,0 +1,107 @@
+<!-- <div class="container">
+  <h2>{{titulo}}</h2>
+  <form [formGroup]="createInstancia" (ngSubmit)="agregarEditarIntancias()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input formControlName="nombre" type="text" id="nombre" name="nombre" required autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="documento">Documento de Id:</label>
+      <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="pais">País:</label>
+      <select formControlName="pais" id="pais" name="pais" required>
+        <option value="Mexico">Mexico</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Panama">Panama</option>
+        <option value="Ecuador">Ecuador</option>
+        <option value="Chile">Chile</option>
+        <option value="Guatemala">Guatemala</option>
+        <option value="Peru">Peru</option>
+        <option value="Costa Rica">Costa Rica</option>
+        <option value="Honduras">Honduras</option>
+        <option value="Nicaragua">Nicaragua</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit">Enviar Datos</button>
+
+    </div>
+
+  </form>
+  <button class="cancelar" routerLink="/list-I">Cancelar</button>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="header">
+  <div class="header__title">
+
+
+    <span>Admin</span>
+    <h2>Gluky users</h2>
+  </div>
+  <div class="user">
+
+    <!-- <h4 class="user__mail">{{correo}}</h4> -->
+    <div class="user__avatares"><img class="user__avatar" src="../../../assets/profile_picture.png" alt="imagen" />
+      <!-- <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button> -->
+    </div>
+
+
+  </div>
+</div>
+<div class="container">
+  <div class="card">
+    <div class="form">
+      <h1 class="form__title">Registro de instancias</h1>
+
+      <div class="form__control">
+        <input class="form__field" formControlName="nombre" type="text" placeholder="Nombre" id="nombre" name="nombre"
+          required autocomplete="off" />
+        <label for="input-field" class="form__input">Nombre</label>
+        <span class="form__span"></span>
+      </div>
+      <div class="form__control">
+        <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off"
+          placeholder="Doc Id" class="form__field" />
+        <label for="input-field" class="form__input">Enter text</label>
+        <span class="form__span"></span>
+      </div>
+      <div class="form__control">
+        <input placeholder="Enter text" class="form__field" type="text" />
+        <label for="input-field" class="form__input">Enter text</label>
+        <span class="form__span"></span>
+      </div>
+      <div class="form__control">
+        <label for="form-select">Cuenta de puntos</label>
+        <select class="form__select" name="" id="PointsAccount">
+          <option value="Yes">No</option>
+          <option value="No">Si</option>
+        </select>
+      </div>
+      <div class="form__buttons">
+        <button class="form__btn">Cancelar</button>
+        <button class="form__btn">Crear</button>
+      </div>
+    </div>
+    <div class="info">
+      <h2 class="info__title">Programas Glüky Users</h2>
+      <div class="info__icon">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="white" height="8em" viewBox="0 0 640 512">
+          <path
+            d="M255.03 261.65c6.25 6.25 16.38 6.25 22.63 0l11.31-11.31c6.25-6.25 6.25-16.38 0-22.63L253.25 192l35.71-35.72c6.25-6.25 6.25-16.38 0-22.63l-11.31-11.31c-6.25-6.25-16.38-6.25-22.63 0l-58.34 58.34c-6.25 6.25-6.25 16.38 0 22.63l58.35 58.34zm96.01-11.3l11.31 11.31c6.25 6.25 16.38 6.25 22.63 0l58.34-58.34c6.25-6.25 6.25-16.38 0-22.63l-58.34-58.34c-6.25-6.25-16.38-6.25-22.63 0l-11.31 11.31c-6.25 6.25-6.25 16.38 0 22.63L386.75 192l-35.71 35.72c-6.25 6.25-6.25 16.38 0 22.63zM624 416H381.54c-.74 19.81-14.71 32-32.74 32H288c-18.69 0-33.02-17.47-32.77-32H16c-8.8 0-16 7.2-16 16v16c0 35.2 28.8 64 64 64h512c35.2 0 64-28.8 64-64v-16c0-8.8-7.2-16-16-16zM576 48c0-26.4-21.6-48-48-48H112C85.6 0 64 21.6 64 48v336h512V48zm-64 272H128V64h384v256z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

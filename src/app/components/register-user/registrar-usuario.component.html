@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="form__card">
+    <form class="form" (ngSubmit)="registrar()" [formGroup]="registrarUsuario">
+      <h1 class="form__title">Registro</h1>
+      <div class="form__control">
+        <input
+          class="control__input"
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <label for="input-field" class="control__label">Email</label>
+        <span class="control__span"></span>
+      </div>
+      <span
+        class="alert"
+        *ngIf="
+          registrarUsuario.get('email')?.hasError('required') &&
+          registrarUsuario.get('email')?.touched
+        "
+      >
+        El <strong class="alert__strong">correo</strong> es requerido
+      </span>
+      <span
+        class="alert"
+        *ngIf="
+          registrarUsuario.get('email')?.hasError('email') &&
+          registrarUsuario.get('email')?.touched
+        "
+      >
+        El <strong class="alert__strong">correo</strong> es invalido
+      </span>
+      <div class="form__control">
+        <input
+          class="control__input"
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <label for="input-field" class="control__label">Contraseña</label>
+        <span class="control__span"></span>
+      </div>
+      <span
+        class="alert"
+        *ngIf="
+          registrarUsuario.get('password')?.hasError('required') &&
+          registrarUsuario.get('password')?.touched
+        "
+      >
+        La <strong class="alert__strong">Contraseña</strong> es requerida
+      </span>
+      <span
+        *ngIf="
+          registrarUsuario.get('password')?.hasError('minlength') &&
+          registrarUsuario.get('password')?.touched
+        "
+      >
+        El <strong class="alert__strong">Contraseña</strong> debe tener 6
+        caracteres
+      </span>
+      <div class="form__control">
+        <input
+          class="control__input"
+          type="password"
+          formControlName="repetirPassword"
+          placeholder="Repetir Password"
+        />
+        <label for="input-field" class="control__label"
+          >Repetir contraseña</label
+        >
+        <span class="control__span"></span>
+      </div>
+      <button
+        class="form__btn"
+        [disabled]="registrarUsuario.invalid"
+        type="submit"
+      >
+        Registrarse
+      </button>
+      <button class="form__btn" routerLink="/login" type="submit">
+        Volver
+      </button>
+    </form>
+    <div class="form__info">
+      <h1 class="info__title">Gluky users</h1>
+      <p class="info__paragraph">
+        Sistema para la administración de usuarios de prueba.
+      </p>
+    </div>
+  </div>
+</div>

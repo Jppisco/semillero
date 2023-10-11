@@ -1,0 +1,14 @@
+<button class="agregar" [routerLink]="['/list-U/',id_programa,id_instancia]">volver</button>
+
+<div class=" container">
+  <h1>{{titulo}}</h1>
+  <form [formGroup]="createUsuario" (ngSubmit)="agregarEditarUsuarios()">
+    <input type="text" placeholder="Usuario" formControlName="usuario">
+    <input type="text" placeholder="Clave" formControlName="clave">
+    <select formControlName="puntos">
+      <option value="Si">Si</option>
+      <option value="No">No</option>
+    </select>
+    <button class="submit">Agregar</button>
+  </form>
+</div>
