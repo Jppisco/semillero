@@ -23,21 +23,41 @@
         <div class="table">
           <h5 *ngIf="allInstancias.length == 0" style="margin-top: 30px;">No hay datos</h5>
           <div class="table__options">
-            <div class="filtro" *ngIf="allInstancias.length > 0">
+
+            <div class="filter__block filter__block--search">
+              <label class="filter__label" for="text-filter">Buscar:</label>
+              <input class="filter__input" type="text" id="text-filter" placeholder="Escriba su texto..." [(ngModel)]="nombreABuscar"
+              (keyup.enter)="getInstanciaByNombre()">
+            </div>
+            <div class="filter__block filter__block--dateStart">
+              <label class="filter__label" for="date-start">Desde:</label>
+              <input class="filter__input" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio">
+            </div>
+            <div class="filter__block filter__block--dateEnd">
+              <label class="filter__label" for="date-end">Hasta:</label>
+              <input class="filter__input" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin">
+            </div>
+
+            <!-- <div class="filtro" *ngIf="allInstancias.length > 0">
               <input type="search" placeholder="buscar" name="nombre" [(ngModel)]="nombreABuscar"
                 (keyup.enter)="getInstanciaByNombre()">
               <button (click)="limpiarInput()">Limpiar Filtro</button>
             </div>
             <input type="date" placeholder="fecha inicio" name="incio" [(ngModel)]="fechaInicio">
             <input type="date" placeholder="fecha fin" name="fin" [(ngModel)]="fechaFin">
-            <button (click)="fechas()">Buscar con fecha</button>
+            <button (click)="fechas()">Buscar con fecha</button> -->
             <button *ngIf="allInstancias.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
               <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
             </button>
             <button class="table__button" routerLink="/create-I">
               <i class="fas fa-plus"></i> &nbsp; Añadir Datos
             </button>
-
+            <button class="table__button table__button--mobile"  routerLink="/create-I">
+              <i class="fas fa-file-excel"></i>
+            </button>
+            <button class="table__button table__button--mobile" (click)="exportToExcel()">
+              <i class="fas fa-plus"></i>
+            </button>
           </div>
           <div class="table__content">
             <div class="table__scroll">

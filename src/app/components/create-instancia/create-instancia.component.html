@@ -26,9 +26,7 @@
     </div>
     <div class="form-group">
       <button type="submit">Enviar Datos</button>
-
     </div>
-
   </form>
   <button class="cancelar" routerLink="/list-I">Cancelar</button>
 </div> -->
@@ -38,32 +36,11 @@
 
 
 
-
-
-
-
-
-<div class="header">
-  <div class="header__title">
-
-
-    <span>Admin</span>
-    <h2>Gluky users</h2>
-  </div>
-  <div class="user">
-
-    <!-- <h4 class="user__mail">{{correo}}</h4> -->
-    <div class="user__avatares"><img class="user__avatar" src="../../../assets/profile_picture.png" alt="imagen" />
-      <!-- <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button> -->
-    </div>
-
-
-  </div>
-</div>
 <div class="container">
   <div class="card">
     <div class="form">
-      <h1 class="form__title">Registro de instancias</h1>
+      <form action="" [formGroup]="createInstancia" (ngSubmit)="agregarEditarIntancias()">
+      <h1 class="form__title">{{titulo}}</h1>
 
       <div class="form__control">
         <input class="form__field" formControlName="nombre" type="text" placeholder="Nombre" id="nombre" name="nombre"
@@ -74,25 +51,34 @@
       <div class="form__control">
         <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off"
           placeholder="Doc Id" class="form__field" />
-        <label for="input-field" class="form__input">Enter text</label>
+        <label for="input-field" class="form__input">Doc ID</label>
         <span class="form__span"></span>
       </div>
-      <div class="form__control">
+      <!-- <div class="form__control">
         <input placeholder="Enter text" class="form__field" type="text" />
         <label for="input-field" class="form__input">Enter text</label>
         <span class="form__span"></span>
-      </div>
+      </div> -->
       <div class="form__control">
-        <label for="form-select">Cuenta de puntos</label>
-        <select class="form__select" name="" id="PointsAccount">
-          <option value="Yes">No</option>
-          <option value="No">Si</option>
+        <label for="form-select">País</label>
+        <select class="form__select">
+          <option value="Mexico">Mexico</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Panama">Panama</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="Chile">Chile</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Peru">Peru</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Honduras">Honduras</option>
+          <option value="Nicaragua">Nicaragua</option>
         </select>
       </div>
       <div class="form__buttons">
-        <button class="form__btn">Cancelar</button>
-        <button class="form__btn">Crear</button>
+        <button class="form__btn" routerLink="/list-I">Cancelar</button>
+        <button class="form__btn" type="submit">Aceptar</button>
       </div>
+      </form>
     </div>
     <div class="info">
       <h2 class="info__title">Programas Glüky Users</h2>

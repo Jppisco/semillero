@@ -8,7 +8,8 @@
     background: #ebe9e9;
     width: 100%;
     padding: 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
+    overflow-y: auto;
 }
 
 .header {
@@ -73,6 +74,33 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 10px;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.filter__block {
+  margin: 0rem 1rem;
+}
+
+.filter__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.filter__input {
+  width: 100%;
+  max-width: 110px;
+  padding: 5px;
+  border: 1px solid lightseagreen;
+  border-radius: 3px;
+  color: black;
 }
 
 .table__button {
@@ -177,4 +205,50 @@
 
 .table__content2 {
     display: none;
+}
+
+.table__button--mobile{
+  display: none;
+}
+
+@media screen and (max-width: 620px) {
+
+  .tableWrapper{
+    padding: 1rem;
+  }
+
+  .table__scroll{
+    max-height: 250px;
+  }
+
+  .table__options{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .table__button{
+    display: none;
+  }
+
+  .table__button--mobile{
+    display: block;
+    margin: 0px 5px;
+  }
+
+  .filter__block--search{
+    grid-row: 3;
+    grid-column: 1 / span 2;
+  }
+
+  .filter__block--dateStart{
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .filter__block--dateEnd{
+    grid-column: 2;
+    grid-row: 2;
+  }
+
 }
