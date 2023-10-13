@@ -52,8 +52,8 @@
                     <td class="table__cell">{{usuarios.usuario}}</td>
                     <td class="table__cell">{{usuarios.clave}}</td>
                     <td class="table__cell">{{usuarios.puntos}}</td>
-                    <td class="table__cell">{{usuarios.fechaCreacion  }}</td>
-                    <td class="table__cell">{{usuarios.fechaActualizacion }}</td>
+                    <td class="table__cell">{{usuarios.fechaCreacion | date  }}</td>
+                    <td class="table__cell">{{usuarios.fechaActualizacion | date }}</td>
                     <td class="table_cell table__cell--options">
                       <i class="fas fa-edit fa-lg"
                         [routerLink]="['/edit-U/',usuarios.id,usuarios.id_programa,id_instancia]"></i>

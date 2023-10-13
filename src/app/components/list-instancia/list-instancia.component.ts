@@ -22,7 +22,7 @@ export class ListInstanciaComponent implements OnInit {
   currentPage: number = 1;
   currentPageItems: any[] = [];
   nombreABuscar: string | undefined;
-  fechaInicio: string | undefined;
+  fechaInicio: Date | undefined;
   fechaFin: string | undefined;
 
   ngOnInit(): void {
@@ -51,25 +51,12 @@ export class ListInstanciaComponent implements OnInit {
     this._instanciaService.getInstancias().subscribe(data => {
       const instancias = data.map((element: any) => {
         const nombre = element.payload.doc.data().nombre.toLowerCase();
-        const fechaCreacion = new Date(element.payload.doc.data().fechaCreacion.toDate()).toLocaleString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-        const fechaActualizacion = new Date(element.payload.doc.data().fechaActualizacion.toDate()).toLocaleString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
+
         return {
           id: element.payload.doc.id,
           nombre: nombre,
-          fechaCreacion: fechaCreacion,
-          fechaActualizacion: fechaActualizacion,
+          fechaCreacion: element.payload.doc.data().fechaCreacion,
+          fechaActualizacion: element.payload.doc.data().fechaActualizacion,
           doc_id: element.payload.doc.data().doc_id,
           id_instancia: element.payload.doc.data().id_instancia,
           pais: element.payload.doc.data().pais,
@@ -114,53 +101,28 @@ export class ListInstanciaComponent implements OnInit {
   async getInstancias() {
     await this._instanciaService.getInstancias().subscribe(data => {
       this.allInstancias = data.map((element: any) => {
-        const fechaCreacion = element.payload.doc.data().fechaCreacion.toDate();
-        const fechaActualizacion = element.payload.doc.data().fechaActualizacion.toDate();
-        const opcionesDeFormato = {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        };
-        const fechaFormateadaCreacion = fechaCreacion.toLocaleString(undefined, opcionesDeFormato);
-        const fechaFormateadaActualizacion = fechaActualizacion.toLocaleString(undefined, opcionesDeFormato);
         return {
           id: element.payload.doc.id,
           ...element.payload.doc.data(),
-          fechaCreacion: fechaFormateadaCreacion,
-          fechaActualizacion: fechaFormateadaActualizacion,
+
         };
       });
       this.loadCurrentPageItems();
     });
   }
   async fechas() {
-    // const fechaIni = this.fechaInicio;
-    // const fechaFin = this.fechaFin;
-    // const dateParts = this.fechaInicio.split("-");
-    // const fechaInicioFormateada = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
-    // console.log(fechaInicioFormateada.getTime());
-    // const datePartes = this.fechaFin.split("-");
-    // const fechaFinFormateada = new Date(Number(datePartes[2]), Number(datePartes[1]) - 1, Number(datePartes[0]));
-    // console.log(fechaFinFormateada.getTime());
-    await this._instanciaService.fecha().subscribe(data => {
+    const inicio = (new Date(this.fechaInicio)).getTime();
+    const timestampInicio = Math.floor(inicio.valueOf() / 1000);
+    const fin = (new Date(this.fechaFin)).getTime();
+    const timestampFin = Math.floor(fin.valueOf() / 1000);
+
+    console.log(timestampInicio, timestampFin);
+    await this._instanciaService.fecha(inicio, fin).subscribe(data => {
       this.allInstancias = data.map((element: any) => {
-        const fechaCreacion = element.payload.doc.data().fechaCreacion.toDate();
-        const fechaActualizacion = element.payload.doc.data().fechaActualizacion.toDate();
-        const opcionesDeFormato = {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        };
-        const fechaFormateadaCreacion = fechaCreacion.toLocaleString(undefined, opcionesDeFormato);
-        const fechaFormateadaActualizacion = fechaActualizacion.toLocaleString(undefined, opcionesDeFormato);
+
         return {
           id: element.payload.doc.id,
-          fechaCreacion: fechaFormateadaCreacion,
-          fechaActualizacion: fechaFormateadaActualizacion,
+
           ...element.payload.doc.data(),
         };
       });

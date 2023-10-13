@@ -47,8 +47,8 @@ export class CreateProgramaComponent implements OnInit {
       id_programa: this.createPrograma.value.nombre.toLowerCase().replace(/ /g, '_'),
       nombre: this.createPrograma.value.nombre,
       pais: this.createPrograma.value.pais,
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
+      fechaCreacion: (new Date()).getTime(),
+      fechaActualizacion: (new Date()).getTime()
     }
     this._programaService.agregarProgramas(programa).then(() => {
       Swal.fire({
@@ -69,7 +69,7 @@ export class CreateProgramaComponent implements OnInit {
       id_programa: this.createPrograma.value.nombre.toLowerCase().replace(/ /g, '_'),
       nombre: this.createPrograma.value.nombre,
       pais: this.createPrograma.value.pais,
-      fechaActualizacion: new Date()
+      fechaActualizacion: (new Date()).getTime()
     }
     this._programaService.actualizarPrograma(id, programas).then(() => {
       Swal.fire({

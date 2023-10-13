@@ -54,8 +54,8 @@ export class CreateInstanciaComponent implements OnInit {
       nombre: this.createInstancia.value.nombre,
       doc_id: this.createInstancia.value.doc_id,
       pais: this.createInstancia.value.pais,
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
+      fechaCreacion: (new Date()).getTime(),
+      fechaActualizacion: (new Date()).getTime()
     }
     //hacemos llamado a la funcion que hay en el servicio y almacenamos un firebase
     this._instanciaService.agregarInstancia(instancia).then(() => {
@@ -78,7 +78,7 @@ export class CreateInstanciaComponent implements OnInit {
       nombre: this.createInstancia.value.nombre,
       doc_id: this.createInstancia.value.doc_id,
       pais: this.createInstancia.value.pais,
-      fechaActualizacion: new Date()
+      fechaActualizacion: (new Date()).getTime()
     }
 
     this._instanciaService.actualizarInstancia(id, instancia).then(() => {
@@ -91,6 +91,7 @@ export class CreateInstanciaComponent implements OnInit {
       })
       console.log("Instancia Actualizada");
       this.router.navigate(['/list-I'])
+      console.log(instancia)
     }).catch(error => {
       console.log(error)
     })

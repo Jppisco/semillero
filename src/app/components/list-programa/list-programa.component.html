@@ -57,8 +57,8 @@
                     <td class="table__cell">{{programas.id_programa}}</td>
                     <td class="table__cell">{{programas.nombre}}</td>
                     <td class="table__cell">{{programas.pais}}</td>
-                    <td class="table__cell">{{programas.fechaCreacion  }}</td>
-                    <td class="table__cell">{{programas.fechaActualizacion }}</td>
+                    <td class="table__cell">{{programas.fechaCreacion | date  }}</td>
+                    <td class="table__cell">{{programas.fechaActualizacion | date }}</td>
                     <td class="table_cell table__cell--options">
                       <i class="fas fa-edit fa-lg" [routerLink]="['/edit-P/',programas.id,programas.id_instancia]"></i>
                     </td>

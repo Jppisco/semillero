@@ -119,22 +119,9 @@ export class ListProgramaComponent implements OnInit {
   getProgramaId(id_instancia: string) {
     this._programaService.getProgramasBy(id_instancia).subscribe(data => {
       this.programa = data.map((element: any) => {
-        const fechaCreacion = element.payload.doc.data().fechaCreacion.toDate();
-        const fechaActualizacion = element.payload.doc.data().fechaActualizacion.toDate();
-        const opcionesDeFormato = {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        };
-        const fechaFormateadaCreacion = fechaCreacion.toLocaleString(undefined, opcionesDeFormato);
-        const fechaFormateadaActualizacion = fechaActualizacion.toLocaleString(undefined, opcionesDeFormato);
         return {
           id: element.payload.doc.id,
-          ...element.payload.doc.data(),
-          fechaCreacion: fechaFormateadaCreacion,
-          fechaActualizacion: fechaFormateadaActualizacion,
+          ...element.payload.doc.data()
         };
       });
       this.loadCurrentPageItems();

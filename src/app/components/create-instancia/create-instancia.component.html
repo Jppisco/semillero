@@ -40,44 +40,44 @@
   <div class="card">
     <div class="form">
       <form action="" [formGroup]="createInstancia" (ngSubmit)="agregarEditarIntancias()">
-      <h1 class="form__title">{{titulo}}</h1>
+        <h1 class="form__title">{{titulo}}</h1>
 
-      <div class="form__control">
-        <input class="form__field" formControlName="nombre" type="text" placeholder="Nombre" id="nombre" name="nombre"
-          required autocomplete="off" />
-        <label for="input-field" class="form__input">Nombre</label>
-        <span class="form__span"></span>
-      </div>
-      <div class="form__control">
-        <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off"
-          placeholder="Doc Id" class="form__field" />
-        <label for="input-field" class="form__input">Doc ID</label>
-        <span class="form__span"></span>
-      </div>
-      <!-- <div class="form__control">
+        <div class="form__control">
+          <input class="form__field" formControlName="nombre" type="text" placeholder="Nombre" id="nombre" name="nombre"
+            required autocomplete="off" />
+          <label for="input-field" class="form__input">Nombre</label>
+          <span class="form__span"></span>
+        </div>
+        <div class="form__control">
+          <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off"
+            placeholder="Doc Id" class="form__field" />
+          <label for="input-field" class="form__input">Doc ID</label>
+          <span class="form__span"></span>
+        </div>
+        <!-- <div class="form__control">
         <input placeholder="Enter text" class="form__field" type="text" />
         <label for="input-field" class="form__input">Enter text</label>
         <span class="form__span"></span>
       </div> -->
-      <div class="form__control">
-        <label for="form-select">País</label>
-        <select class="form__select">
-          <option value="Mexico">Mexico</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Panama">Panama</option>
-          <option value="Ecuador">Ecuador</option>
-          <option value="Chile">Chile</option>
-          <option value="Guatemala">Guatemala</option>
-          <option value="Peru">Peru</option>
-          <option value="Costa Rica">Costa Rica</option>
-          <option value="Honduras">Honduras</option>
-          <option value="Nicaragua">Nicaragua</option>
-        </select>
-      </div>
-      <div class="form__buttons">
-        <button class="form__btn" routerLink="/list-I">Cancelar</button>
-        <button class="form__btn" type="submit">Aceptar</button>
-      </div>
+        <div class="form__control">
+          <label for="form-select">País</label>
+          <select class="form__select" formControlName="pais">
+            <option value="Mexico">Mexico</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Panama">Panama</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Chile">Chile</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Peru">Peru</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Nicaragua">Nicaragua</option>
+          </select>
+        </div>
+        <div class="form__buttons">
+          <button class="form__btn" routerLink="/list-I">Cancelar</button>
+          <button class="form__btn" type="submit">Aceptar</button>
+        </div>
       </form>
     </div>
     <div class="info">

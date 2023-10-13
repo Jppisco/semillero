@@ -26,8 +26,8 @@
 
             <div class="filter__block filter__block--search">
               <label class="filter__label" for="text-filter">Buscar:</label>
-              <input class="filter__input" type="text" id="text-filter" placeholder="Escriba su texto..." [(ngModel)]="nombreABuscar"
-              (keyup.enter)="getInstanciaByNombre()">
+              <input class="filter__input" type="text" id="text-filter" placeholder="Escriba su texto..."
+                [(ngModel)]="nombreABuscar" (keyup.enter)="getInstanciaByNombre()">
             </div>
             <div class="filter__block filter__block--dateStart">
               <label class="filter__label" for="date-start">Desde:</label>
@@ -37,6 +37,7 @@
               <label class="filter__label" for="date-end">Hasta:</label>
               <input class="filter__input" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin">
             </div>
+            <button (click)="fechas()">Buscar con fecha</button>
 
             <!-- <div class="filtro" *ngIf="allInstancias.length > 0">
               <input type="search" placeholder="buscar" name="nombre" [(ngModel)]="nombreABuscar"
@@ -52,7 +53,7 @@
             <button class="table__button" routerLink="/create-I">
               <i class="fas fa-plus"></i> &nbsp; Añadir Datos
             </button>
-            <button class="table__button table__button--mobile"  routerLink="/create-I">
+            <button class="table__button table__button--mobile" routerLink="/create-I">
               <i class="fas fa-file-excel"></i>
             </button>
             <button class="table__button table__button--mobile" (click)="exportToExcel()">
@@ -80,15 +81,15 @@
                     <td class="table__cell">{{instancia.nombre}}</td>
                     <td class="table__cell">{{instancia.doc_id}}</td>
                     <td class="table__cell">{{instancia.pais}}</td>
-                    <td class="table__cell">{{instancia.fechaCreacion}}</td>
-                    <td class="table__cell">{{instancia.fechaActualizacion}}</td>
+                    <td class="table__cell">{{instancia.fechaCreacion|date}}</td>
+                    <td class="table__cell">{{instancia.fechaActualizacion|date}}</td>
                     <td class="table_cell table__cell--options">
                       <i class="fas fa-edit fa-lg" [routerLink]="['/edit/',instancia.id]"></i>
                     </td>
                     <td class="table_cell table__cell--options">
                       <i class="fas fa-laptop-code fa-lg" [routerLink]="['/list-P/',instancia.id_instancia]"></i>
                     </td>
-                  <!-- <td><i (click)="eliminarInstancia(instancia.id)" class="fas fa-trash-alt fa-lg"></i></td> -->
+                    <!-- <td><i (click)="eliminarInstancia(instancia.id)" class="fas fa-trash-alt fa-lg"></i></td> -->
                   </tr>
                 </tbody>
               </table>
@@ -127,8 +128,8 @@
           <td class="table__cell">{{instancia.nombre}}</td>
           <td class="table__cell">{{instancia.doc_id}}</td>
           <td class="table__cell">{{instancia.pais}}</td>
-          <td class="table__cell">{{instancia.fechaCreacion}}</td>
-          <td class="table__cell">{{instancia.fechaActualizacion}}</td>
+          <td class="table__cell">{{instancia.fechaCreacion|date}}</td>
+          <td class="table__cell">{{instancia.fechaActualizacion|date}}</td>
         </tr>
       </tbody>
     </table>

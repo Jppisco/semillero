@@ -9,7 +9,6 @@ import { Timestamp } from 'firebase/firestore';
 export class InstanciaService {
 
   constructor(private firestore: AngularFirestore) {
-
   }
 
   //hacemos una metodo para almacenar los datos en la collecion
@@ -26,14 +25,16 @@ export class InstanciaService {
     return this.firestore.collection('instancias', ref => ref.where('nombre', '==', nombreMin)).snapshotChanges();
   }
 
-  fecha(): Observable<any> {
-    const startTimestamp = '1696914000';
+  fecha(inicio, fin): Observable<any> {
+    const startTimestamp = 1696958703;
     const endTimestamp = '1696914000';
+    let start = new Date('2017-01-01');
 
     // Realizar la consulta en Firestore
     return this.firestore.collection('instancias', ref => {
       return ref
-        .where('nombre', '==', 'Argos')
+        .where('fechaCreacion', '>', inicio)
+        .where('fechaCreacion', '<', fin)
     }).snapshotChanges();
   }
 

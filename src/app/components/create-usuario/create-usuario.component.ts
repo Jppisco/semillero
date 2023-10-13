@@ -31,9 +31,9 @@ export class CreateUsuarioComponent implements OnInit {
       clave: ['', Validators.required],
       puntos: ['', Validators.required],
     })
-    this.id_programa = this.aRoute.snapshot.paramMap.get('id_programa');  
-    this.id = this.aRoute.snapshot.paramMap.get('id');    
-    this.id_instancia = this.aRoute.snapshot.paramMap.get('id_instancia');    
+    this.id_programa = this.aRoute.snapshot.paramMap.get('id_programa');
+    this.id = this.aRoute.snapshot.paramMap.get('id');
+    this.id_instancia = this.aRoute.snapshot.paramMap.get('id_instancia');
   }
   agregarEditarUsuarios() {
     if (this.id === null) {
@@ -41,15 +41,15 @@ export class CreateUsuarioComponent implements OnInit {
     } else {
       return this.editarUsuarios(this.id);
     }
-  } 
+  }
   agregarUsuarios() {
     const usuarios: any = {
       id_programa: this.id_programa,
       usuario: this.createUsuario.value.usuario,
       clave: this.createUsuario.value.clave,
       puntos: this.createUsuario.value.puntos,
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
+      fechaCreacion: (new Date()).getTime(),
+      fechaActualizacion: (new Date()).getTime()
     }
     this._usuarioService.agregarUsuarios(usuarios).then(() => {
       Swal.fire({
@@ -70,7 +70,7 @@ export class CreateUsuarioComponent implements OnInit {
       usuario: this.createUsuario.value.usuario,
       clave: this.createUsuario.value.clave,
       puntos: this.createUsuario.value.puntos,
-      fechaActualizacion: new Date()
+      fechaActualizacion: (new Date()).getTime()
     }
     this._usuarioService.actualizarUsuario(id, usuarios).then(() => {
       Swal.fire({

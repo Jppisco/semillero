@@ -20,6 +20,7 @@ import { RecuperarPasswordComponent } from './components/recuperar-password/recu
 import { CreateProgramaComponent } from './components/create-programa/create-programa.component';
 import { ListProgramaComponent } from './components/list-programa/list-programa.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { StatusPipe } from './pipe/status.pipe';
 
 
 
@@ -42,6 +43,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RecuperarPasswordComponent,
     CreateProgramaComponent,
     ListProgramaComponent,
+    StatusPipe,
   ],
   imports: [
     BrowserModule,
