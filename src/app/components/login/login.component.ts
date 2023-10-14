@@ -38,24 +38,32 @@ export class LoginComponent implements OnInit {
     const password = this.loginUsuario.value.password;
     this.afAuth.signInWithEmailAndPassword(email, password).then((userCredential) => {
       if (userCredential.user?.emailVerified) {
-        this.afAuth.authState.subscribe((dato: any) => {
-          sessionStorage.setItem('uid', dato.uid);
-          sessionStorage.setItem('correo', dato.email);
-          this.router.navigate(['/list-I']);
-        })
+        userCredential.user.getIdToken().then((idToken) => {
+          this.afAuth.authState.subscribe((dato: any) => {
+            const userData = {
+              uid: dato.uid,
+              correo: dato.email,
+              token: idToken
+            };
+            const userDataString = JSON.stringify(userData);
+
+            // Almacena la cadena JSON en sessionStorage
+            sessionStorage.setItem('userData', userDataString);
+            this.router.navigate(['/list-I']);
+          });
+        });
       } else {
         this.router.navigate(['/verificar-correo']);
       }
     }).catch((error) => {
-
       Swal.fire({
         position: 'top-end',
         icon: 'error',
         title: this.firebaseError.codeError(error.code),
         showConfirmButton: false,
         timer: 1500
-      })
-    })
+      });
+    });
   }
 
 }

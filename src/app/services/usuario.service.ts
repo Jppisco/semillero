@@ -20,13 +20,22 @@ export class UsuarioService {
   }
   authLogin(provider: any) {
     this.afAuth.signInWithPopup(provider).then(result => {
-      console.log(result)
-      this.afAuth.authState.subscribe((user: any) => {
-        sessionStorage.setItem('uid', user.uid);
-        sessionStorage.setItem('correo', user.email);
+      const user = result.user;
+      user.getIdToken().then(idToken => {
+        const userData = {
+          uid: user.uid,
+          correo: user.email,
+          token: idToken
+        };
+        const userDataString = JSON.stringify(userData);
+
+        // Almacena la cadena JSON en sessionStorage
+        sessionStorage.setItem('userData', userDataString);
         this.router.navigate(['/list-I']);
-      })
-    }).catch(error => console.log(error))
+      });
+    }).catch(error => {
+      console.log(error);
+    });
   }
   async agregarUsuarios(instancia: any): Promise<any> {
     await this.firestore.collection('usuarios').add(instancia);

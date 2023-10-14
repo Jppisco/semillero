@@ -14,16 +14,28 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      const uid = sessionStorage.getItem('uid');
-      const correo = sessionStorage.getItem('correo');
-      console.log(uid, correo)
-      if (uid && correo) {
-        resolve(true);
-      } else {
-        this.router.navigate(['/login']);
-        sessionStorage.clear();
-        resolve(false);
+      const userDataString = sessionStorage.getItem('userData');
+
+      if (userDataString) {
+        const userData = JSON.parse(userDataString);
+
+        if (userData && userData.uid && userData.correo && userData.token) {
+          // Todos los datos necesarios están presentes en el objeto
+          resolve(true);
+        } else {
+          this.router.navigate(['/login']);
+          sessionStorage.clear();
+          resolve(false);
+        }
       }
     });
+
+
+
+
+
+
+
+
   }
 }
