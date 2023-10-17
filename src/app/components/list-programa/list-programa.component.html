@@ -2,8 +2,6 @@
   <div class="content">
     <div class="header">
       <div class="header__title">
-
-
         <span>Admin</span>
         <h2>Gluky users</h2>
       </div>
@@ -20,11 +18,18 @@
         <div class="table">
           <h5 *ngIf="programa.length == 0" style="margin-top: 30px;">No hay datos</h5>
           <div class="table__options">
-            <div class="filtro" *ngIf="programa.length > 0">
-              <input type="search" placeholder="buscar" name="nombre" [(ngModel)]="programaABuscar"
-                (keyup.enter)="getProgramaByNombre()">
+            <div class="filtro">
               <button (click)="limpiarInput()">Limpiar Filtro</button>
             </div>
+            <div class="filter__block filter__block--dateStart">
+              <label class="filter__label" for="date-start">Desde:</label>
+              <input class="filter__input" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio">
+            </div>
+            <div class="filter__block filter__block--dateEnd">
+              <label class="filter__label" for="date-end">Hasta:</label>
+              <input class="filter__input" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin">
+            </div>
+            <button (click)="fechas()">Buscar con fecha</button>
             <button *ngIf="programa.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
               <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
             </button>

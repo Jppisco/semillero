@@ -29,6 +29,7 @@
               <input class="filter__input" type="text" id="text-filter" placeholder="Escriba su texto..."
                 [(ngModel)]="nombreABuscar" (keyup.enter)="getInstanciaByNombre()">
             </div>
+            <button (click)="limpiarInput()">Limpiar Filtro</button>
             <div class="filter__block filter__block--dateStart">
               <label class="filter__label" for="date-start">Desde:</label>
               <input class="filter__input" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio">
@@ -38,15 +39,6 @@
               <input class="filter__input" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin">
             </div>
             <button (click)="fechas()">Buscar con fecha</button>
-
-            <!-- <div class="filtro" *ngIf="allInstancias.length > 0">
-              <input type="search" placeholder="buscar" name="nombre" [(ngModel)]="nombreABuscar"
-                (keyup.enter)="getInstanciaByNombre()">
-              <button (click)="limpiarInput()">Limpiar Filtro</button>
-            </div>
-            <input type="date" placeholder="fecha inicio" name="incio" [(ngModel)]="fechaInicio">
-            <input type="date" placeholder="fecha fin" name="fin" [(ngModel)]="fechaFin">
-            <button (click)="fechas()">Buscar con fecha</button> -->
             <button *ngIf="allInstancias.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
               <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
             </button>

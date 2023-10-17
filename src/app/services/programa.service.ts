@@ -22,6 +22,13 @@ export class ProgramaService {
         .orderBy('fechaCreacion', 'desc');
     }).snapshotChanges();
   }
+  fecha(inicio: number, fin: number): Observable<any> {
+    return this.firestore.collection('programas', ref => {
+      return ref
+        .where('fechaCreacion', '>', inicio)
+        .where('fechaCreacion', '<', fin)
+    }).snapshotChanges();
+  }
   async eliminarPrograma(id: string): Promise<any> {
     await this.firestore.collection('programas').doc(id).delete();
   }

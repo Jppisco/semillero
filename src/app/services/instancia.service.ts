@@ -25,25 +25,17 @@ export class InstanciaService {
     return this.firestore.collection('instancias', ref => ref.where('nombre', '==', nombreMin)).snapshotChanges();
   }
 
-  fecha(inicio, fin): Observable<any> {
-    const startTimestamp = 1696958703;
-    const endTimestamp = '1696914000';
-    let start = new Date('2017-01-01');
-
-    // Realizar la consulta en Firestore
+  fecha(inicio: number, fin: number): Observable<any> {
     return this.firestore.collection('instancias', ref => {
       return ref
         .where('fechaCreacion', '>', inicio)
         .where('fechaCreacion', '<', fin)
     }).snapshotChanges();
   }
-
-
   //hacemos una metodo recibe el id lo valida y lo elimina
   async eliminarInstancia(id: string): Promise<any> {
     await this.firestore.collection('instancias').doc(id).delete();
   }
-
   //hacemos un metodo que nos va a retornar todos los datos dependiendo el id
   getInstancia(id: string): Observable<any> {
     return this.firestore.collection('instancias').doc(id).snapshotChanges();

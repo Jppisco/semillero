@@ -46,8 +46,6 @@ export class LoginComponent implements OnInit {
               token: idToken
             };
             const userDataString = JSON.stringify(userData);
-
-            // Almacena la cadena JSON en sessionStorage
             sessionStorage.setItem('userData', userDataString);
             this.router.navigate(['/list-I']);
           });

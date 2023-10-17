@@ -20,7 +20,6 @@ export class ListUsuarioComponent implements OnInit {
   currentPage: number = 1;
   currentPageItems: any[] = [];
 
-
   ngOnInit(): void {
     this.getusu();
   }
@@ -38,7 +37,6 @@ export class ListUsuarioComponent implements OnInit {
     this.id_instancia = this.aRoute.snapshot.paramMap.get('id_instancia');
 
   }
-
   loadCurrentPageItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;

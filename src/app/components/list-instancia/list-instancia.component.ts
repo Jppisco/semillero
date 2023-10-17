@@ -40,8 +40,10 @@ export class ListInstanciaComponent implements OnInit {
 
   limpiarInput() {
     this.nombreABuscar = '';
+    this.fechaInicio = undefined;
+    this.fechaFin = undefined
     this.getInstancias();
-    return;
+
   }
   getInstanciaByNombre() {
     if (!this.nombreABuscar) {
@@ -104,7 +106,6 @@ export class ListInstanciaComponent implements OnInit {
         return {
           id: element.payload.doc.id,
           ...element.payload.doc.data(),
-
         };
       });
       this.loadCurrentPageItems();
@@ -112,17 +113,11 @@ export class ListInstanciaComponent implements OnInit {
   }
   async fechas() {
     const inicio = (new Date(this.fechaInicio)).getTime();
-    const timestampInicio = Math.floor(inicio.valueOf() / 1000);
     const fin = (new Date(this.fechaFin)).getTime();
-    const timestampFin = Math.floor(fin.valueOf() / 1000);
-
-    console.log(timestampInicio, timestampFin);
     await this._instanciaService.fecha(inicio, fin).subscribe(data => {
       this.allInstancias = data.map((element: any) => {
-
         return {
           id: element.payload.doc.id,
-
           ...element.payload.doc.data(),
         };
       });

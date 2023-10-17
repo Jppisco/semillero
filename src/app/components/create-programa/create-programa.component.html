@@ -1,28 +1,3 @@
-<!-- <button class="agregar" [routerLink]="['/list-P/',id_instancia]">volver</button>
-
-<div class=" container">
-  <h1>{{titulo}}</h1>
-  <form [formGroup]="createPrograma" (ngSubmit)="agregarEditarProgramas()">
-    <input type="text" placeholder="nombre" formControlName="nombre">
-    <select formControlName="pais">
-      <option value="Mexico">Mexico</option>
-      <option value="Colombia">Colombia</option>
-      <option value="Panama">Panama</option>
-      <option value="Ecuador">Ecuador</option>
-      <option value="Chile">Chile</option>
-      <option value="Guatemala">Guatemala</option>
-      <option value="Peru">Peru</option>
-      <option value="Costa Rica">Costa Rica</option>
-      <option value="Honduras">Honduras</option>
-      <option value="Nicaragua">Nicaragua</option>
-      <option value="Republica Dominicana">Republica Dominicana</option>
-    </select>
-    <button class="submit">Agregar</button>
-  </form>
-</div> -->
-
-
-
 <div class="container">
   <div class="card">
     <div class="form">
@@ -35,17 +10,6 @@
         <label for="input-field" class="form__input">Nombre del programa</label>
         <span class="form__span"></span>
       </div>
-      <!-- <div class="form__control">
-        <input formControlName="doc_id" type="text" id="documento" name="documento" required autocomplete="off"
-          placeholder="Doc Id" class="form__field" />
-        <label for="input-field" class="form__input">Enter text</label>
-        <span class="form__span"></span>
-      </div> -->
-      <!-- <div class="form__control">
-        <input placeholder="Enter text" class="form__field" type="text" />
-        <label for="input-field" class="form__input">Enter text</label>
-        <span class="form__span"></span>
-      </div> -->
       <div class="form__control">
         <label for="form-select">País</label>
         <select class="form__select" formControlName="pais">

@@ -20,6 +20,8 @@ export class ListProgramaComponent implements OnInit {
   itemsPerPage: number = 5;
   currentPage: number = 1;
   currentPageItems: any[] = [];
+  fechaInicio: Date | undefined;
+  fechaFin: string | undefined;
 
   ngOnInit(): void {
     this.getpro();
@@ -66,6 +68,8 @@ export class ListProgramaComponent implements OnInit {
   }
   limpiarInput() {
     this.programaABuscar = '';
+    this.fechaInicio = undefined;
+    this.fechaFin = undefined;
     this.getpro();
     return;
   }
@@ -106,6 +110,19 @@ export class ListProgramaComponent implements OnInit {
         programa.nombre === this.programaABuscar
       );
       this.currentPageItems = filteredProgramas;
+    });
+  }
+  async fechas() {
+    const inicio = (new Date(this.fechaInicio)).getTime();
+    const fin = (new Date(this.fechaFin)).getTime();
+    await this._programaService.fecha(inicio, fin).subscribe(data => {
+      this.programa = data.map((element: any) => {
+        return {
+          id: element.payload.doc.id,
+          ...element.payload.doc.data(),
+        };
+      });
+      this.loadCurrentPageItems();
     });
   }
   exportToExcel(): void {
