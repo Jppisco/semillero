@@ -2,19 +2,14 @@
   <div class="content">
     <div class="header">
       <div class="header__title">
-
-
         <span>Admin</span>
         <h2>Gluky users</h2>
       </div>
       <div class="user">
-
         <h4 class="user__mail">{{correo}}</h4>
         <div class="user__avatares"><img class="user__avatar" src="../../../assets/profile_picture.png" alt="imagen" />
-          <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button>
+          <!-- <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button> -->
         </div>
-
-
       </div>
     </div>
     <div class="tableWrapper">
@@ -23,34 +18,19 @@
         <div class="table">
           <h5 *ngIf="allInstancias.length == 0" style="margin-top: 30px;">No hay datos</h5>
           <div class="table__options">
-
-            <div class="filter__block filter__block--search">
-              <label class="filter__label" for="text-filter">Buscar:</label>
-              <input class="filter__input" type="text" id="text-filter" placeholder="Escriba su texto..."
-                [(ngModel)]="nombreABuscar" (keyup.enter)="getInstanciaByNombre()">
+            <div class="options__filter">
+              <label class="filter__label filter__label--1" for="date-start">Desde:</label>
+              <input class="filter__date filter__date--start" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio" title="Fecha Inicial" placeholder="Fecha Inicial">
+              <label class="filter__label filter__label--2" for="date-end">Hasta:</label>
+              <input class="filter__date filter__date--end" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin" title="Fecha Final" placeholder="Fecha Final">
+              <button title="Limpiar filtro" class="filter__button" (click)="limpiarInput()"><i class="fas fa-window-close"></i></button>
+              <button title="Buscar" class="filter__button" (click)="fechas()"><i class="fas fa-search"></i></button>
             </div>
-            <button (click)="limpiarInput()">Limpiar Filtro</button>
-            <div class="filter__block filter__block--dateStart">
-              <label class="filter__label" for="date-start">Desde:</label>
-              <input class="filter__input" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio">
+            <div class="options__buttons">
+              <button class="option__button" routerLink="/create-I" title="Añadir"><i class="fas fa-plus"></i> &nbsp; <span class="option__text">Añadir</span></button>
+              <button class="option__button" (click)="exportToExcel()" *ngIf="allInstancias.length > 0" title="Exportat a Excel"><i class="fas fa-file-excel"></i> &nbsp; <span class="option__text">Exportar a Excel</span></button>
+              <!-- <button class="option__button option__button--back" title="Volver"><i class="fas fa-chevron-left"></i> &nbsp; <span class="option__text">Volver</span></button> -->
             </div>
-            <div class="filter__block filter__block--dateEnd">
-              <label class="filter__label" for="date-end">Hasta:</label>
-              <input class="filter__input" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin">
-            </div>
-            <button (click)="fechas()">Buscar con fecha</button>
-            <button *ngIf="allInstancias.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
-              <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
-            </button>
-            <button class="table__button" routerLink="/create-I">
-              <i class="fas fa-plus"></i> &nbsp; Añadir Datos
-            </button>
-            <button class="table__button table__button--mobile" routerLink="/create-I">
-              <i class="fas fa-file-excel"></i>
-            </button>
-            <button class="table__button table__button--mobile" (click)="exportToExcel()">
-              <i class="fas fa-plus"></i>
-            </button>
           </div>
           <div class="table__content">
             <div class="table__scroll">
@@ -61,10 +41,10 @@
                     <th class="table__header">Nombre</th>
                     <th class="table__header">Documento ID</th>
                     <th class="table__header">País</th>
-                    <th class="table__header">Creación</th>
-                    <th class="table__header">Actualización</th>
-                    <th class="table__header"></th>
-                    <th class="table__header"></th>
+                    <th class="table__header table__header--hidden">Creación</th>
+                    <th class="table__header table__header--hidden">Actualización</th>
+                    <th class="table__header table__header--options"></th>
+                    <th class="table__header table__header--options"></th>
                   </tr>
                 </thead>
                 <tbody class="table__body" *ngFor="let instancia of currentPageItems">
@@ -73,12 +53,12 @@
                     <td class="table__cell">{{instancia.nombre}}</td>
                     <td class="table__cell">{{instancia.doc_id}}</td>
                     <td class="table__cell">{{instancia.pais}}</td>
-                    <td class="table__cell">{{instancia.fechaCreacion|date}}</td>
-                    <td class="table__cell">{{instancia.fechaActualizacion|date}}</td>
-                    <td class="table_cell table__cell--options">
+                    <td class="table__cell table__cell--hidden">{{instancia.fechaCreacion|date}}</td>
+                    <td class="table__cell table__cell--hidden">{{instancia.fechaActualizacion|date}}</td>
+                    <td class="table_cell table__cell--options" title="Editar">
                       <i class="fas fa-edit fa-lg" [routerLink]="['/edit/',instancia.id]"></i>
                     </td>
-                    <td class="table_cell table__cell--options">
+                    <td class="table_cell table__cell--options" title="Lista de programas">
                       <i class="fas fa-laptop-code fa-lg" [routerLink]="['/list-P/',instancia.id_instancia]"></i>
                     </td>
                     <!-- <td><i (click)="eliminarInstancia(instancia.id)" class="fas fa-trash-alt fa-lg"></i></td> -->
@@ -88,10 +68,14 @@
             </div>
           </div>
           <div class="table__footer" *ngIf="allInstancias.length > 0">
-            <button class="paginationBtn" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
-            <span class="paginationText">{{currentPage}}</span>
-            <button class="paginationBtn" (click)="nextPage()"
-              [disabled]="currentPage === totalPages()">Siguiente</button>
+              <button class="footer__btn" (click)="previousPage()" [disabled]="currentPage === 1" title="Anterior">
+                <i class="fas fa-chevron-left"></i> &nbsp; <span class="footer__text">Anterior</span>
+            </button>
+              <span class="paginationText">{{currentPage}}</span>
+              <button class="footer__btn" (click)="nextPage()" [disabled]="currentPage === totalPages()" title="Siguiente">
+                <span class="footer__text">Siguiente</span> &nbsp;
+                <i class="fas fa-chevron-right"></i>
+              </button>
           </div>
         </div>
       </div>

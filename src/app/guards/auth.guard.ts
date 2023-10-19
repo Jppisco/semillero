@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { UsuarioService } from '../services/usuario.service';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private afAuth: AngularFireAuth,
     private router: Router) { }
 
   canActivate(): Promise<boolean> {
@@ -28,14 +24,9 @@ export class AuthGuard implements CanActivate {
           resolve(false);
         }
       }
+      else {
+        this.router.navigate(['/login']);
+      }
     });
-
-
-
-
-
-
-
-
   }
 }

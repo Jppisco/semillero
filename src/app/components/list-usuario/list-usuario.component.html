@@ -8,7 +8,7 @@
       <div class="user">
         <h4 class="user__mail">{{correo}}</h4>
         <div class="user__avatares"><img class="user__avatar" src="../../../assets/profile_picture.png" alt="imagen" />
-          <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button>
+          <!-- <button type="button" class="cerrar" (click)="logOut()">Salir 🥹</button> -->
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <div class="tableContainer">
         <div class="table">
           <h5 *ngIf="usuario.length == 0" style="margin-top: 30px;">No hay datos</h5>
-          <div class="table__options">
+          <!-- <div class="table__options">
             <button *ngIf="usuario.length > 0" class="table__button table_button-excel" (click)="exportToExcel()">
               <i class="fas fa-file-excel"></i> &nbsp; Exportar a Excel
             </button>
@@ -28,7 +28,25 @@
               <i class="fas fa-chevron-left"></i> &nbsp; Volver
             </button>
 
+          </div> -->
+
+          <div class="table__options">
+            <!-- <div class="options__filter">
+              <label class="filter__label filter__label--1" for="date-start">Desde:</label>
+              <input class="filter__date filter__date--start" type="date" id="date-start" name="incio" [(ngModel)]="fechaInicio" title="Fecha Inicial" placeholder="Fecha Inicial">
+              <label class="filter__label filter__label--2" for="date-end">Hasta:</label>
+              <input class="filter__date filter__date--end" type="date" id="date-end" name="fin" [(ngModel)]="fechaFin" title="Fecha Final" placeholder="Fecha Final">
+              <button title="Limpiar filtro" class="filter__button" (click)="limpiarInput()"><i class="fas fa-window-close"></i></button>
+              <button title="Buscar" class="filter__button" (click)="fechas()"><i class="fas fa-search"></i></button>
+            </div> -->
+            <div class="options__buttons">
+              <button class="option__button" [routerLink]="['/create-U/',id_programa,id_instancia]" title="Añadir"><i class="fas fa-plus"></i> &nbsp; <span class="option__text">Añadir</span></button>
+              <button class="option__button" (click)="exportToExcel()" *ngIf="usuario.length > 0" title="Exportat a Excel"><i class="fas fa-file-excel"></i> &nbsp; <span class="option__text">Exportar a Excel</span></button>
+              <button class="option__button option__button--back" [routerLink]="['/list-P/',id_instancia]" title="Volver"><i class="fas fa-chevron-left"></i> &nbsp; <span class="option__text">Volver</span></button>
+            </div>
           </div>
+
+
           <div class="table__content">
             <div class="table__scroll">
               <table class="table__data" id="tabla-exportar" *ngIf="usuario.length > 0">
@@ -64,16 +82,22 @@
             </div>
           </div>
           <div class="table__footer" *ngIf="usuario.length > 0">
-            <button class="paginationBtn" (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+            <button class="footer__btn" (click)="previousPage()" [disabled]="currentPage === 1" title="Anterior">
+              <i class="fas fa-chevron-left"></i> &nbsp; <span class="footer__text">Anterior</span>
+          </button>
             <span class="paginationText">{{currentPage}}</span>
-            <button class="paginationBtn" (click)="nextPage()"
-              [disabled]="currentPage === totalPages()">Siguiente</button>
+            <button class="footer__btn" (click)="nextPage()" [disabled]="currentPage === totalPages()" title="Siguiente">
+              <span class="footer__text">Siguiente</span> &nbsp;
+              <i class="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 <div class="table__content2">
   <div class="table__scroll">
     <table class="table__data" id="tabla-exportar" *ngIf="usuario.length > 0">
